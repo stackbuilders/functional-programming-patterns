@@ -20,11 +20,8 @@ public class App {
       new User("Stephen", "Strange", false, true)
     );
 
-    List<User> enabledUsers = users.stream()
+    List<Row> rows = users.stream()
       .filter(user -> user.isEnabled())
-      .collect(Collectors.toList());
-
-    List<Row> rows = enabledUsers.stream()
       .map(user -> {
         Row row = new Row();
         row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
