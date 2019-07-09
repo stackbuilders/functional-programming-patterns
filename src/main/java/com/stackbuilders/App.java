@@ -1,5 +1,8 @@
 package com.stackbuilders;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
   public static void main(String[] args) {
     User[] users = new User[] {
@@ -17,19 +20,24 @@ public class App {
 
     Table table = new Table();
 
+    List<User> enabledUsers = new ArrayList<User>();
     for (User user : users) {
       if (user.isEnabled()) {
-        Row row = new Row();
-        row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
-        String role = "";
-        if (user.isAdmin()) {
-          role = "ADMIN";
-        } else {
-          role = "MEMBER";
-        }
-        row.addColumn(new Column(role));
-        table.addRow(row);
+        enabledUsers.add(user);
       }
+    }
+
+    for (User user : enabledUsers) {
+      Row row = new Row();
+      row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
+      String role = "";
+      if (user.isAdmin()) {
+        role = "ADMIN";
+      } else {
+        role = "MEMBER";
+      }
+      row.addColumn(new Column(role));
+      table.addRow(row);
     }
 
     table.render();
