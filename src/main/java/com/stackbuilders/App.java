@@ -24,14 +24,15 @@ public class App {
       .filter(user -> user.isEnabled())
       .collect(Collectors.toList());
 
-    List<Row> rows = new ArrayList<Row>();
-    for (User user : enabledUsers) {
-      Row row = new Row();
-      row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
-      String role = user.isAdmin() ? "ADMIN" : "MEMBER";
-      row.addColumn(new Column(role));
-      rows.add(row);
-    }
+    List<Row> rows = enabledUsers.stream()
+      .map(user -> {
+        Row row = new Row();
+        row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
+        String role = user.isAdmin() ? "ADMIN" : "MEMBER";
+        row.addColumn(new Column(role));
+        return row;
+      })
+      .collect(Collectors.toList());
 
     Table table = new Table();
     table.addRows(rows);
