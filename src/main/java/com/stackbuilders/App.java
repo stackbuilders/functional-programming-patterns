@@ -6,8 +6,7 @@ public class App {
   public static void main(String[] args) {
     User[] users = new User[] {
       // admins
-      new User("Bruce", "Banner", true, true),
-      new User("Clinton", "Barton", true, false),
+      new User("Bruce", "Banner", true, true), new User("Clinton", "Barton", true, false),
       new User("Natasha", "Romanoff", true, true),
       new User("Steve", "Rogers", true, true),
       new User("Thor", "Odisen", true, true),
@@ -29,6 +28,7 @@ public class App {
         } else {
           role = "MEMBER";
         }
+        row.addColumn(new Column(role));
         table.addRow(row);
       }
     }

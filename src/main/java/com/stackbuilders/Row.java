@@ -15,8 +15,10 @@ public class Row {
   }
 
   public void render() {
+    System.out.print("| ");
     for (Column column : columns) {
       column.render();
+      System.out.print(" | ");
     }
   }
 }

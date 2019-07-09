@@ -8,6 +8,6 @@ public class Column {
   }
 
   public void render() {
-    System.out.print(content);
+    System.out.printf("%20s", content);
   }
 }

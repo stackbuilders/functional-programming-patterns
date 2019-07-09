@@ -17,6 +17,7 @@ public class Table {
   public void render() {
     for (Row row : rows) {
       row.render();
+      System.out.println();
     }
   }
 }
