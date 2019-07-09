@@ -18,8 +18,6 @@ public class App {
       new User("Stephen", "Strange", false, true)
     };
 
-    Table table = new Table();
-
     List<User> enabledUsers = new ArrayList<User>();
     for (User user : users) {
       if (user.isEnabled()) {
@@ -27,14 +25,17 @@ public class App {
       }
     }
 
+    List<Row> rows = new ArrayList<Row>();
     for (User user : enabledUsers) {
       Row row = new Row();
       row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
       String role = user.isAdmin() ? "ADMIN" : "MEMBER";
       row.addColumn(new Column(role));
-      table.addRow(row);
+      rows.add(row);
     }
 
+    Table table = new Table();
+    table.addRows(rows);
     table.render();
   }
 }
