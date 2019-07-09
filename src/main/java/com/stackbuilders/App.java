@@ -1,8 +1,8 @@
 package com.stackbuilders;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class App {
@@ -17,14 +17,24 @@ public class App {
       new User("Tony", "Stark", true, true),
       // members
       new User("Peter", "Parker", false, false),
-      new User("Stephen", "Strange", false, true)
+      new User("Stephen", "Strange", false, true),
+      new User(null, "Pointer", true, true)
     );
 
     List<Row> rows = users.stream()
       .filter(user -> user.isEnabled())
       .map(user -> {
         Row row = new Row();
-        row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
+
+        String fullName = Optional.ofNullable(user.getFirstName())
+          .map(firstName -> {
+            return Optional.ofNullable(user.getLastName())
+              .map(lastName -> firstName + " " + lastName)
+              .get();
+          })
+          .orElse("<unknown>");
+
+        row.addColumn(new Column(fullName));
         String role = user.isAdmin() ? "ADMIN" : "MEMBER";
         row.addColumn(new Column(role));
         return row;
