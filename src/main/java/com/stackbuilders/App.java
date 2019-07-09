@@ -1,11 +1,13 @@
 package com.stackbuilders;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
   public static void main(String[] args) {
-    User[] users = new User[] {
+    List<User> users = Arrays.asList(
       // admins
       new User("Bruce", "Banner", true, true),
       new User("Clinton", "Barton", true, false),
@@ -16,14 +18,11 @@ public class App {
       // members
       new User("Peter", "Parker", false, false),
       new User("Stephen", "Strange", false, true)
-    };
+    );
 
-    List<User> enabledUsers = new ArrayList<User>();
-    for (User user : users) {
-      if (user.isEnabled()) {
-        enabledUsers.add(user);
-      }
-    }
+    List<User> enabledUsers = users.stream()
+      .filter(user -> user.isEnabled())
+      .collect(Collectors.toList());
 
     List<Row> rows = new ArrayList<Row>();
     for (User user : enabledUsers) {
