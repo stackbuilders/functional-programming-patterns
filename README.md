@@ -1,4 +1,4 @@
-# EPN Talk - Functional Programming Patterns
+# EPN Talk: Functional Programming Patterns
 
 ## Requirements
 
