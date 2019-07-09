@@ -30,12 +30,7 @@ public class App {
     for (User user : enabledUsers) {
       Row row = new Row();
       row.addColumn(new Column(user.getFirstName() + " " + user.getLastName()));
-      String role = "";
-      if (user.isAdmin()) {
-        role = "ADMIN";
-      } else {
-        role = "MEMBER";
-      }
+      String role = user.isAdmin() ? "ADMIN" : "MEMBER";
       row.addColumn(new Column(role));
       table.addRow(row);
     }
