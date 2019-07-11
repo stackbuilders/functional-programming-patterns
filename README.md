@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stackbuilders/functional-programming-patterns.svg?branch=master)](https://travis-ci.org/stackbuilders/functional-programming-patterns)
+
 # Functional Programming Patterns
 
 ## Requirements
